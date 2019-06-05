@@ -11,4 +11,5 @@ import fr.stazi.epsi.spring.boot.entity.Prisoner;
 public interface PrisonerRepository {
 	
 	public List<Prisoner> searchPrisoners(DangerLevel dangerLevel, String firstName, String lastName);
+	public List<Prisoner> searchPrisonersJpql(DangerLevel dangerLevel, String firstName, String lastName);
 }

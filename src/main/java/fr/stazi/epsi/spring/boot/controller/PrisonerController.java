@@ -68,8 +68,24 @@ public class PrisonerController {
 	}
 	
 	@GetMapping("/search")
-	public List<Prisoner> searchPrisoners(@RequestParam String dangerLevel, @RequestParam String firstName, @RequestParam String lastName) {
+	public List<Prisoner> searchPrisoners(
+			@RequestParam(required = false) String dangerLevel, 
+			@RequestParam(required = false) String firstName, 
+			@RequestParam(required = false) String lastName) {
 		return prisonerRepository.searchPrisoners(DangerLevel.valueOf(dangerLevel), firstName, lastName);
+	}
+	
+	@GetMapping("/search/jpql")
+	public List<Prisoner> searchPrisonersJpql(
+			@RequestParam(required = false) String dangerLevel, 
+			@RequestParam(required = false) String firstName, 
+			@RequestParam(required = false) String lastName) {
+		return prisonerRepository.searchPrisonersJpql(DangerLevel.valueOf(dangerLevel), firstName, lastName);
+	}
+	
+	@GetMapping("/firstName/{firstName}")
+	public List<Prisoner> findByFirstName(@PathVariable String firstName) {
+		return prisonerRepository.findByFirstNameOrderById(firstName);
 	}
 	
 }
