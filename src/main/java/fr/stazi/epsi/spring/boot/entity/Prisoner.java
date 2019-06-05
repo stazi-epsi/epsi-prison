@@ -17,7 +17,7 @@ public class Prisoner {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	private String firstName;
 	
@@ -34,11 +34,11 @@ public class Prisoner {
 	@ManyToOne
 	private Cell  cell;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
