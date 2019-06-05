@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import fr.stazi.epsi.spring.boot.entity.DangerLevel;
 import fr.stazi.epsi.spring.boot.entity.Prisoner;
 import fr.stazi.epsi.spring.boot.exception.AlreadyExistsException;
 import fr.stazi.epsi.spring.boot.exception.NotFoundException;
@@ -63,6 +65,11 @@ public class PrisonerController {
 		}
 		
 		throw new NotFoundException();
+	}
+	
+	@GetMapping("/search")
+	public List<Prisoner> searchPrisoners(@RequestParam String dangerLevel, @RequestParam String firstName, @RequestParam String lastName) {
+		return prisonerRepository.searchPrisoners(DangerLevel.valueOf(dangerLevel), firstName, lastName);
 	}
 	
 }

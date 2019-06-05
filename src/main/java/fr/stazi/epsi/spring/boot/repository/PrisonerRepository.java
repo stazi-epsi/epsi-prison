@@ -2,17 +2,13 @@ package fr.stazi.epsi.spring.boot.repository;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
 
+import fr.stazi.epsi.spring.boot.entity.DangerLevel;
 import fr.stazi.epsi.spring.boot.entity.Prisoner;
 
-public class PrisonerRepository {
-	@PersistenceContext
-	private EntityManager em;
+@Repository
+public interface PrisonerRepository {
 	
-	public List<Prisoner> getPrisoners() {
-		return em.createQuery("from Prisoner", Prisoner.class).getResultList();
-	}
-	
+	public List<Prisoner> searchPrisoners(DangerLevel dangerLevel, String firstName, String lastName);
 }
